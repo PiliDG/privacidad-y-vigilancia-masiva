@@ -187,16 +187,3 @@ if (contactForm && responseMsg) {
     contactForm.reset();
   });
 }
-
-
-// 📩 Formulario de contacto (mensaje de confirmación)
-const contactForm = document.querySelector(".contact-form");
-const responseMsg = document.getElementById("contact-response");
-
-if (contactForm && responseMsg) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    responseMsg.textContent = "✔ Gracias por tu mensaje. Nos pondremos en contacto pronto.";
-    contactForm.reset();
-  });
-}
