@@ -111,11 +111,83 @@ if (carousel) {
 }
 
 // 🖼️ Fallback para imágenes de Casos (si alguna no carga)
-document.querySelectorAll("#casos img").forEach(img => {
-  img.addEventListener("error", () => {
-    img.src = "https://cdn.pixabay.com/photo/2021/04/06/19/42/surveillance-6155838_1280.png";
-  });
+const FALLBACK_IMG = "https://cdn.pixabay.com/photo/2021/04/06/19/42/surveillance-6155838_1280.png";
+
+const casoImgs = document.querySelectorAll("#casos img");
+casoImgs.forEach(img => {
+  const setFallback = () => {
+    if (img.src !== FALLBACK_IMG) {
+      img.src = FALLBACK_IMG;
+    }
+  };
+
+  img.addEventListener("error", setFallback);
+
+  // Si ya cargó roto antes de que agreguemos el listener
+  if (img.complete && img.naturalWidth === 0) {
+    setFallback();
+  }
 });
+
+// 🔍 Modal para ver más info de cada caso
+const modal = document.getElementById("caso-modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+const modalText = document.getElementById("modal-text");
+const modalClose = document.querySelector(".modal-close");
+
+if (modal && modalImg && modalTitle && modalText && modalClose) {
+  document.querySelectorAll("#casos .caso").forEach(caso => {
+    const titleEl = caso.querySelector("h3");
+    const textEl = caso.querySelector("p");
+    const imgEl = caso.querySelector("img");
+
+    if (!titleEl || !textEl || !imgEl) return;
+
+    // Que se note que se puede clickear
+    titleEl.style.cursor = "pointer";
+
+    titleEl.addEventListener("click", () => {
+      modalImg.src = imgEl.src || FALLBACK_IMG;
+      modalTitle.textContent = titleEl.textContent;
+      modalText.textContent = textEl.textContent;
+      modal.style.display = "flex";
+    });
+  });
+
+  const closeModal = () => {
+    modal.style.display = "none";
+  };
+
+  modalClose.addEventListener("click", closeModal);
+
+  // Cerrar si clickeás fuera del cuadro
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Cerrar con ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+}
+
+// 📩 Formulario de contacto (mensaje de confirmación)
+const contactForm = document.querySelector(".contact-form");
+const responseMsg = document.getElementById("contact-response");
+
+if (contactForm && responseMsg) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    responseMsg.textContent = "✔ Gracias por tu mensaje. Nos pondremos en contacto pronto.";
+    contactForm.reset();
+  });
+}
+
 
 // 📩 Formulario de contacto (mensaje de confirmación)
 const contactForm = document.querySelector(".contact-form");
