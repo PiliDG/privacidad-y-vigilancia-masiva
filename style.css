@@ -128,7 +128,7 @@ section h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;              /* más cerca entre sí */
-  justify-content: center;/* se juntan al centro en lugar de estirarse */
+  justify-content: center;/* se juntan al centro */
   align-items: center;
   margin-top: 30px;
 }
@@ -144,7 +144,7 @@ section h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;         /* centra el cuadro dentro de la columna derecha */
+  justify-content: center;
   text-align: center;
 }
 
@@ -154,9 +154,8 @@ section h2 {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(255,77,166,0.25);
-  width: 100%;                     /* ocupa bien el ancho de su columna */
+  width: 100%;
 }
-
 
 .stats-container {
   display: flex;
@@ -197,7 +196,6 @@ section h2 {
   from { width: 0%; }
   to { width: var(--target-width); }
 }
-
 
 /* Conclusión estadísticas */
 .stats-conclusion {
@@ -277,13 +275,9 @@ footer {
   color: var(--lightpink);
 }
 
-
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink { 50% { border-color: transparent } }
 
-@media (max-width: 900px) { 
-  .content-layout { flex-direction: column; }
-}
 /* Modal para Casos reales */
 .modal {
   position: fixed;
@@ -340,7 +334,6 @@ footer {
   color: #fff;
 }
 
-
-
-
-
+@media (max-width: 900px) { 
+  .content-layout { flex-direction: column; }
+}
