@@ -1,3 +1,283 @@
+:root { 
+  --bg: #0a0a0a;
+  --card: #18181c;
+  --pink: #ff4da6;
+  --lightpink: #ff9ecf;
+  --text: #f5f5f5;
+  --muted: #a8a8a8;
+}
+
+/* Fondo animado */
+.background {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1;
+  background: linear-gradient(120deg, #0a0a0a, #1f1a1c, #2b0e1f);
+  background-size: 300% 300%;
+  animation: gradientMove 20s ease infinite;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* General */
+body { margin: 0; font-family: 'Segoe UI', sans-serif; color: var(--text); line-height: 1.6; }
+
+/* Menú */
+.topbar {
+  position: sticky; top: 0;
+  background-color: rgba(26,26,26,0.95);
+  border-bottom: 2px solid var(--pink);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 20px; z-index: 10;
+}
+.logo { color: var(--pink); text-decoration: none; font-weight: bold; font-size: 18px; }
+.topbar nav a { color: var(--muted); text-decoration: none; margin-left: 15px; }
+.topbar nav a:hover { color: var(--lightpink); }
+
+/* Header */
+header { text-align: center; padding: 80px 20px; color: #fff; }
+header p { color: #fbe8f2; }
+
+/* Layout */
+.content-layout {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; align-items: flex-start;
+  max-width: 1200px; margin: 0 auto;
+  gap: 20px;
+}
+.main-column { flex: 2 1 600px; }
+.side-column { flex: 1 1 350px; }
+section {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 0 15px rgba(255, 77, 166, 0.25);
+  margin-bottom: 30px;
+}
+section h2 {
+  color: var(--pink);
+  border-bottom: 2px solid var(--lightpink);
+  padding-bottom: 5px;
+}
+
+/* FAQ */
+.faq-item { margin-bottom: 12px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,77,166,0.25); }
+.faq-question {
+  width: 100%; text-align: left; background: #1b1b1b; color: var(--lightpink);
+  padding: 14px 16px; border: none; cursor: pointer; font-weight: bold;
+  transition: background 0.3s;
+}
+.faq-question:hover { background: var(--pink); color: #fff; }
+.faq-answer { display: none; background-color: #111; padding: 14px 16px; }
+
+/* Casos */
+.casos-container { display: flex; flex-direction: column; gap: 15px; }
+.caso { 
+  display: flex; gap: 10px; 
+  background: #111; border-radius: 10px; padding: 10px; 
+  align-items: center; 
+  box-shadow: 0 0 12px rgba(255,77,166,0.3);
+}
+.caso img {
+  width: 130px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--pink);
+  box-shadow: 0 0 12px rgba(255, 77, 166, 0.4);
+}
+.caso h3 { color: var(--lightpink); margin: 0; }
+.caso p { color: var(--text); margin-top: 5px; font-size: 0.9em; }
+
+/* Carrusel */
+#libros { text-align: center; max-width: 1100px; margin: 40px auto; }
+.carousel {
+  display: flex; overflow-x: auto; gap: 20px; scroll-behavior: smooth;
+  padding: 10px; scrollbar-width: thin; scrollbar-color: var(--pink) var(--card);
+}
+.carousel::-webkit-scrollbar { height: 8px; }
+.carousel::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 10px; }
+
+.book-card {
+  min-width: 280px; background: #1a1a1d; border-radius: 12px; padding: 20px;
+  box-shadow: 0 0 15px rgba(255,77,166,0.3); color: var(--text); flex: 0 0 auto;
+  transition: transform 0.2s ease;
+}
+.book-card:hover { transform: scale(1.05); }
+.book-card h3 { color: var(--lightpink); }
+
+/* Test */
+.quiz { text-align: center; }
+.btn {
+  background: var(--pink); border: none; color: white; padding: 8px 18px;
+  margin: 5px; border-radius: 8px; cursor: pointer; transition: 0.3s;
+}
+.btn:hover { background: var(--lightpink); }
+.btn.selected {
+  background-color: #444;
+  color: #fff;
+  box-shadow: inset 0 0 5px rgba(255,77,166,0.3);
+}
+#result { margin-top: 20px; font-weight: bold; color: var(--lightpink); }
+
+/* Test + Estadísticas LADO A LADO */
+.test-y-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;              /* más cerca entre sí */
+  justify-content: center;/* se juntan al centro */
+  align-items: center;
+  margin-top: 30px;
+}
+
+.test-col {
+  flex: 1 1 350px;
+  max-width: 500px;
+}
+
+.stats-col {
+  flex: 1 1 350px;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Estadísticas */
+#estadisticas {
+  background: #1a1a1d;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255,77,166,0.25);
+  width: 100%;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-item p {
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--lightpink);
+}
+
+/* Animación barras */
+.bar {
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--pink);
+  border-radius: inherit;
+  width: 0;
+  animation: growBar 2s ease forwards;
+}
+
+@keyframes growBar {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
+
+/* Conclusión estadísticas */
+.stats-conclusion {
+  margin-top: 20px;
+  color: var(--lightpink);
+  font-size: 0.95em;
+  line-height: 1.4;
+  max-width: 380px;
+}
+
+/* CONTACTO */
+#contacto {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 25px;
+  margin: 40px auto;
+  max-width: 800px;
+  box-shadow: 0 0 15px rgba(255,77,166,0.25);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--pink);
+  background-color: #111;
+  color: var(--text);
+}
+
+.contact-form button {
+  margin-top: 10px;
+  background: var(--pink);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.contact-form button:hover {
+  background: var(--lightpink);
+}
+
+#contact-response {
+  margin-top: 15px;
+  color: var(--lightpink);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #111;
+  color: var(--muted);
+  font-size: 0.9em;
+  margin-top: 60px;
+}
+
+/* Typewriter */
+#typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid var(--lightpink);
+  white-space: nowrap;
+  /* Solo dejamos el blink, el efecto de escribir lo hace JS */
+  animation: blink .75s step-end infinite;
+  font-size: 2.2em;
+  color: var(--lightpink);
+}
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { 50% { border-color: transparent } }
+
 /* Modal para Casos reales */
 .modal {
   position: fixed;
@@ -52,4 +332,8 @@
 
 .modal-close:hover {
   color: #fff;
+}
+
+@media (max-width: 900px) { 
+  .content-layout { flex-direction: column; }
 }
