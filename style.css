@@ -127,9 +127,9 @@ section h2 {
 .test-y-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
-  justify-content: space-between;  /* test a la izq, diagrama a la derecha */
-  align-items: center;             /* centrados entre sí verticalmente */
+  gap: 16px;              /* más cerca entre sí */
+  justify-content: center;/* se juntan al centro en lugar de estirarse */
+  align-items: center;
   margin-top: 30px;
 }
 
@@ -284,6 +284,7 @@ footer {
 @media (max-width: 900px) { 
   .content-layout { flex-direction: column; }
 }
+
 
 
 
